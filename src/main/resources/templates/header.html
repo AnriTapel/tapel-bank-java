@@ -1,11 +1,13 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head> 
-    <title>Getting Started: Serving Web Content</title> 
+<head>
+    <title th:text="${title}"></title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link href="../styles/main.css" th:href="@{/styles/main.css}" rel="stylesheet" />
 </head>
+
 <body>
-    <p th:text="'Hello, ' + ${name} + '!'" />
-</body>
-</html>
+
+    <div class="top-bar">
+        <p class="logo-text">TapelBank - всем банкам банк</p>
+    </div>
