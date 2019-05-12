@@ -1,0 +1,54 @@
+<div th:replace="/header" xmlns:th="http://www.w3.org/1999/xhtml"></div>
+
+    <div class="page-container">
+        <h2>Добро пожаловать в нашу семью, ахпэрэс!</h2>
+
+        <div class="card sign-up-block" style="display: inline-table">
+
+            <div>
+                <span>Имя</span>
+                <input type="text" id="client-name" name="client-name" onkeyup="validateClientName(event, 'name')"/>
+            </div>
+
+            <div>
+                <span>Фамилия</span>
+                <input type="text" id="client-lastname" name="client-lastname" onkeyup="validateClientName(event, 'lastname')"/>
+            </div>
+
+            <div>
+                <span>Дата рождения</span>
+                <input type="date" id="birth-date" name="birth-date" />
+            </div>
+
+            <div>
+                <span>Номер счета</span>
+                <input type="text" id="client-account" name="client-account" onkeyup="validateClientAccount(event)"/>
+            </div>
+
+            <div>
+                <span>CVC</span>
+                <input type="text" id="client-cvc" name="client-cvc" onkeyup="validateClientCVC(event)"/>
+            </div>
+
+            <div>
+                <span>Кодовое слово</span>
+                <input type="text" id="client-keyword" name="client-keyword" />
+            </div>
+
+            <div>
+                <span>Номер телефона</span>
+                <input type="text" id="client-phone" name="client-phone" />
+            </div>
+
+            <div>
+                <span>Баланс (руб.)</span>
+                <input type="text" id="client-balance" name="client-balance" />
+            </div>
+
+        </div>
+
+        <input type="button" class="common-button" style="display: block; margin: 20px auto;" value="Подтвердить" />
+
+    </div>
+
+<div th:replace="/footer" xmlns:th="http://www.w3.org/1999/xhtml"></div>

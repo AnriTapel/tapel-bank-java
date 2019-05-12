@@ -1,3 +1,25 @@
 <div th:replace="/header" xmlns:th="http://www.w3.org/1999/xhtml"></div>
-<p th:text="'Hello, ' + ${name} + '!'" xmlns:th="http://www.w3.org/1999/xhtml"/>
+<!--<p th:text="'Hello, ' + ${name} + '!'" xmlns:th="http://www.w3.org/1999/xhtml"/>-->
+
+    <div class="page-container">
+        <h2>Рады снова Вас видеть!</h2>
+        <div class="card">
+
+            <p>Карта клиента</p>
+
+            <input id="client-account" name="client-account" type="text" placeholder="НОМЕР СЧЕТА" onkeyup="validateClientAccount(event)"/>
+
+            <div style="display: inline-block; margin-top: 5em; width: 80%;">
+                <input type="text" id="client-name" name="client-name" placeholder="IVAN IVANOV" onkeyup="validateClientName(event)"/>
+                <input type="password" id="client-cvc" name="client-cvc" placeholder="CVC" onkeyup="validateClientCVC(event)"/>
+            </div>
+
+            <div style="margin-top: 4em;">
+                <input type="button" class="common-button" style="float: left" value="Регистрация" onclick="window.open('/sign-up', '_self')"/>
+                <input type="button" class="common-button" style="float: right" value="Оплата" />
+                <input type="button" class="common-button" style="float: right; margin-right: 5px;" value="Перевод" />
+            </div>
+        </div>
+    </div>
+
 <div th:replace="/footer" xmlns:th="http://www.w3.org/1999/xhtml"></div>

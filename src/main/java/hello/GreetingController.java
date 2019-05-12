@@ -1,5 +1,6 @@
 package hello;
 
+import org.hibernate.validator.constraints.CodePointLength;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,4 +16,10 @@ public class GreetingController {
         return "homePage";
     }
 
+
+    @GetMapping("/sign-up")
+    public String signUpPage(Model model){
+        model.addAttribute("title", "TapelBanl - Sign up");
+        return "signUp";
+    }
 }

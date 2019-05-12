@@ -1,10 +1,8 @@
 package hello;
 
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 /**
@@ -18,7 +16,8 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler(
-                "/styles/**", "/static/**").addResourceLocations("classpath:/styles/", "classpath:/static/");
+                "/styles/**", "/scripts/**", "/images/**")
+                .addResourceLocations("classpath:/styles/", "classpath:/scripts/", "classpath:/images/");
     }
 
 
