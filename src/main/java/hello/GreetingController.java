@@ -1,6 +1,8 @@
 package hello;
 
+import com.google.gson.Gson;
 import hello.entities.Client;
+import jdk.nashorn.internal.parser.JSONParser;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,11 +28,15 @@ public class GreetingController {
 
     @PostMapping("/sign-up/new-client")
     @ResponseBody
-    public ResponseEntity<?> createNewClient(@RequestBody MultiValueMap<String, ?> client_data) {
-        if (client_data != null) {
-            System.out.println(client_data);
+    public ResponseEntity<?> createNewClient(@RequestBody String client_data) {
+        Gson g = new Gson();
+        Client client = g.fromJson(client_data, Client.class);
+
+        System.out.println("Balance: " + client.getClient_balance());
+
+        if (client_data != null)
             return ResponseEntity.ok("success");
-        } else
+        else
             return ResponseEntity.badRequest().body("error");
     }
 }

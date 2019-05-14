@@ -1,5 +1,7 @@
 package hello.entities;
 
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+
 import java.util.Date;
 
 /**
@@ -10,14 +12,14 @@ public class Client {
 
     private String client_name;
     private String client_lastname;
-    private Date birth_date;
+    private String birth_date;
     private String client_account;
     private String client_cvc;
     private String client_keyword;
     private String client_phone;
     private int client_balance;
 
-    public Client(String client_name, String client_lastname, Date birth_date, String client_account, String client_cvc, String client_keyword, String client_phone, int client_balance) {
+    public Client(String client_name, String client_lastname, String birth_date, String client_account, String client_cvc, String client_keyword, String client_phone, int client_balance) {
         this.client_name = client_name;
         this.client_lastname = client_lastname;
         this.birth_date = birth_date;
@@ -58,11 +60,11 @@ public class Client {
         this.client_lastname = client_lastname;
     }
 
-    public Date getBirth_date() {
+    public String getBirth_date() {
         return birth_date;
     }
 
-    public void setBirth_date(Date birth_date) {
+    public void setBirth_date(String birth_date) {
         this.birth_date = birth_date;
     }
 
