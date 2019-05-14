@@ -30,9 +30,7 @@ public class GreetingController {
     @ResponseBody
     public ResponseEntity<?> createNewClient(@RequestBody String client_data) {
         Gson g = new Gson();
-        Client client = g.fromJson(client_data, Client.class);
-
-        System.out.println("Balance: " + client.getClient_balance());
+        String result = g.fromJson(client_data, Client.class);
 
         if (client_data != null)
             return ResponseEntity.ok("success");
