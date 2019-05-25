@@ -1,17 +1,11 @@
 package hello.entities;
 
-import javax.persistence.*;
-
 /**
  * Created by ANRI on 14.05.2019.
  */
 
-@Entity
-@Table(name="accounts")
 public class Account {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     private String client_account;

@@ -16,6 +16,7 @@ p{
 input[type=text], input[type=password], input[type=date]{
     height: 35px;
     border: 1px solid black;
+    width: 250px;
     background: white;
     font-size: 18px;
     font-weight: bold;
@@ -35,10 +36,44 @@ input[type=text], input[type=password], input[type=date]{
     font-size: 22px !important;
 }
 
+.overlay{
+    display: none;
+    z-index: 999;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.8);
+}
+
+.overlay-message-block{
+    position: fixed;
+    left: calc(50% - 200px);
+    top: calc(50% - 100px);
+    width: 400px;
+    height: 200px;
+    display: table;
+    padding: 25px 20px;
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.overlay-message-block p{
+    text-align: center;
+    vertical-align: middle;
+    display: table-cell;
+}
+
 .page-container{
     text-align: center;
     padding: 4em 3em;
     user-select: text;
+}
+
+.block-styling{
+    border: 1px solid #595e5b;
+    border-radius: 3px;
+    box-shadow: 0 0 10px 0 #787878;
 }
 
 .footer-block{
@@ -65,9 +100,6 @@ input[type=text], input[type=password], input[type=date]{
     margin: 0 auto;
     padding: 4em 2em;
     height: 300px;
-    border: 1px solid #595e5b;
-    border-radius: 3px;
-    box-shadow: 0 0 10px 0 #787878;
 }
 
 .sign-up-block input[type=text],
@@ -86,17 +118,16 @@ input[type=text], input[type=password], input[type=date]{
     margin-left: 50px;
 }
 #client-account{
-    width: 60%;
+    width: 60% !important;
     text-align: center;
 }
 
 #client-cvc{
-    width: 100px;
+    width: 100px !important;
     float: right;
 }
 
 #client-name, #client-lastname{
-    width: 250px;
     float: left;
 }
 

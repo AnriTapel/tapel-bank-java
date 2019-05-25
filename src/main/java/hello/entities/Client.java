@@ -1,42 +1,36 @@
 package hello.entities;
 
-import javax.persistence.*;
+import javax.annotation.Generated;
 
 /**
  * Created by ANRI on 13.05.2019.
  */
 
-@Entity
-@Table(name="clients")
 public class Client {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     private String client_name;
     private String client_lastname;
+    private String client_passport;
     private String birth_date;
     private String client_phone;
 
-
-
-
-    public Client(String client_name, String client_lastname, String birth_date, String client_account, String client_cvc, String client_keyword, String client_phone, int client_balance) {
+    public Client(int id, String client_name, String client_lastname, String client_passport, String birth_date, String client_phone) {
+        this.id = id;
         this.client_name = client_name;
         this.client_lastname = client_lastname;
+        this.client_passport = client_passport;
         this.birth_date = birth_date;
         this.client_phone = client_phone;
     }
 
-    @Override
-    public String toString() {
-        return "Client{" +
-                "client_name='" + client_name + '\'' +
-                ", client_lastname='" + client_lastname + '\'' +
-                ", birth_date=" + birth_date +
-                ", client_phone='" + client_phone + '\'' +
-                '}';
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getClient_name() {
@@ -55,6 +49,14 @@ public class Client {
         this.client_lastname = client_lastname;
     }
 
+    public String getClient_passport() {
+        return client_passport;
+    }
+
+    public void setClient_passport(String client_passport) {
+        this.client_passport = client_passport;
+    }
+
     public String getBirth_date() {
         return birth_date;
     }
@@ -71,4 +73,15 @@ public class Client {
         this.client_phone = client_phone;
     }
 
+    @Override
+    public String toString() {
+        return "Client{" +
+                "id=" + id +
+                ", client_name='" + client_name + '\'' +
+                ", client_lastname='" + client_lastname + '\'' +
+                ", client_passport='" + client_passport + '\'' +
+                ", birth_date='" + birth_date + '\'' +
+                ", client_phone='" + client_phone + '\'' +
+                '}';
+    }
 }

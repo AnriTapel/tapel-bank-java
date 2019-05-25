@@ -3,16 +3,21 @@
     <div class="page-container">
         <h2>Добро пожаловать в нашу семью, ахпэрэс!</h2>
 
-        <div class="card sign-up-block" style="display: inline-table">
+        <div class="card sign-up-block block-styling" style="display: inline-table">
 
             <div>
                 <span>Имя</span>
-                <input type="text" id="client-name" name="client-name" onkeyup="validateClientName(event, 'name')"/>
+                <input type="text" id="client-name" name="client-name" placeholder="IVAN" onkeyup="validateClientName(event, 'name')"/>
             </div>
 
             <div>
                 <span>Фамилия</span>
-                <input type="text" id="client-lastname" name="client-lastname" onkeyup="validateClientName(event, 'lastname')"/>
+                <input type="text" id="client-lastname" name="client-lastname" placeholder="IVANOV" onkeyup="validateClientName(event, 'lastname')"/>
+            </div>
+
+            <div>
+                <span>Серия и номер паспорта</span>
+                <input type="text" id="client-passport" name="client-passport" placeholder="4511 123456" onkeyup="validateClientPassport(event)"/>
             </div>
 
             <div>
@@ -22,12 +27,12 @@
 
             <div>
                 <span>Номер счета</span>
-                <input type="text" id="client-account" name="client-account" onkeyup="validateClientAccount(event)"/>
+                <input type="text" id="client-account" name="client-account" placeholder="4276 3801 1234 5678" onkeyup="validateClientAccount(event)"/>
             </div>
 
             <div>
                 <span>CVC</span>
-                <input type="text" id="client-cvc" name="client-cvc" onkeyup="validateClientCVC(event)"/>
+                <input type="text" id="client-cvc" name="client-cvc" placeholder="012" onkeyup="validateClientCVC(event)"/>
             </div>
 
             <div>
@@ -37,12 +42,12 @@
 
             <div>
                 <span>Номер телефона</span>
-                <input type="text" id="client-phone" name="client-phone" />
+                <input type="text" id="client-phone" name="client-phone" placeholder="+79012345678"/>
             </div>
 
             <div>
                 <span>Баланс (руб.)</span>
-                <input type="text" id="client-balance" name="client-balance" />
+                <input type="text" id="client-balance" name="client-balance" placeholder="10000"/>
             </div>
 
         </div>

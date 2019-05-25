@@ -6,6 +6,7 @@ function createNewUser(){
     var data = {
         "client_name": $("#client-name").val(),
         "client_lastname": $("#client-lastname").val(),
+        "client_passport": $("#client-passport").val(),
         "birth_date": $("#birth-date").val(),
         "client_account": $("#client-account").val(),
         "client_cvc": $("#client-cvc").val(),
@@ -26,9 +27,17 @@ function createNewUser(){
         timeout: 600000,
         success: function (data) {
            console.log(data);
+           $("#overlay-message-block").children().text(data.responseText);
+           $(".overlay").show();
         },
         error: function (e) {
             console.log(e);
+            $("#overlay-message-block").children("p").text(e.responseText);
+            $(".overlay").show();
         }
     });
+}
+
+function hideOverlay(){
+    $(".overlay").hide();
 }
