@@ -6,9 +6,9 @@ function createNewUser(){
     var data = {
         "client_name": $("#client-name").val(),
         "client_lastname": $("#client-lastname").val(),
-        "client_passport": $("#client-passport").val(),
+        "client_passport": $("#client-passport-series").val() + " " + $("#client-passport-number").val(),
         "birth_date": $("#birth-date").val(),
-        "client_account": $("#client-account").val(),
+        "client_account": $("#client-account-1").val() + " " + $("#client-account-2").val() + " " + $("#client-account-3").val() + " " + $("#client-account-4").val(),
         "client_cvc": $("#client-cvc").val(),
         "client_keyword": $("#client-keyword").val(),
         "client_phone": $("#client-phone").val(),

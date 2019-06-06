@@ -1,6 +1,7 @@
 package hello.dao;
 
 import hello.entities.Client;
+import hello.mappers.ClientEntityMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -23,6 +24,7 @@ public class ClientDao {
     @Autowired
     JdbcTemplate jdbcTemplate;
 
+
     public List<Client> getClientDataById(int id) {
         String sql = "select * from clients where id = ?";
         return jdbcTemplate.query(sql, new Object[]{id}, new BeanPropertyRowMapper<Client>(Client.class));
@@ -30,14 +32,14 @@ public class ClientDao {
 
     public List<Client> getClientDataByPassport(String passport){
         String sql = "select * from clients where passport = ?";
-        return jdbcTemplate.query(sql, new Object[]{passport}, new BeanPropertyRowMapper<Client>(Client.class));
+        return jdbcTemplate.query(sql, new Object[]{passport}, new ClientEntityMapper());
     }
 
-    public int createNewClient(Client client_data) throws SQLException {
-        String sql = "insert into clients(first_name, last_name, passport, birtday, phone) values ('" +
-                client_data.getClient_name() + "', '" + client_data.getClient_lastname() + "', '" +
-                client_data.getClient_passport() + "', '" + client_data.getBirth_date() + "', '" +
-                client_data.getClient_phone() + "')";
+    public int createNewClient(Client clientData) throws SQLException {
+        String sql = "insert into clients(first_name, last_name, passport, birthday, phone) values ('" +
+                clientData.getClient_name() + "', '" + clientData.getClient_lastname() + "', '" +
+                clientData.getClient_passport() + "', '" + clientData.getBirth_date() + "', '" +
+                clientData.getClient_phone() + "')";
         try (
                 Connection connection = dataSource.getConnection();
                 PreparedStatement statement = connection.prepareStatement(sql,

@@ -1,0 +1,31 @@
+<div th:replace="/header" xmlns:th="http://www.w3.org/1999/xhtml"></div>
+
+<div class="page-container">
+    <div class="block-styling" style="width: 350px; height: 300px; margin: 20px auto;">
+        <div th:if="${param.error}">
+            Invalid username and password.
+        </div>
+        <div th:if="${param.logout}">
+            You have been logged out.
+        </div>
+        <form th:action="@{/login}" method="post">
+            <div style="display: inline-block; margin-top: 65px; width: 100%;">
+                <span style="float: left; margin-left: 10px;">Логин</span>
+                <input type="text" style="float: right; margin-right: 10px;" id="client-login" name="username"/>
+            </div>
+
+            <div style="display: inline-block; margin-top: 25px; width: 100%;">
+                <span style="float: left; margin-left: 10px;">Пароль</span>
+                <input type="password" style="float: right; margin-right: 10px;" id="client-keyword" name="password"/>
+            </div>
+
+            <input type="submit" class="common-button" value="Войти"/>
+        </form>
+        <input type="button" class="common-button" style="margin-top: 20px;" value="Зарегистрироваться"
+               onclick="window.open('/sign-up', '_self')"/>
+    </div>
+
+</div>
+
+
+<div th:replace="/footer" xmlns:th="http://www.w3.org/1999/xhtml"></div>
