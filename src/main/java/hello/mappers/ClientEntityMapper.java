@@ -16,11 +16,11 @@ public class ClientEntityMapper implements RowMapper<Client> {
         Client client = new Client();
 
         client.setId(resultSet.getInt("id"));
-        client.setClient_name(resultSet.getString("first_name"));
-        client.setClient_lastname(resultSet.getString("last_name"));
-        client.setBirth_date(resultSet.getDate("birthday"));
-        client.setClient_phone(resultSet.getString("phone"));
-        client.setClient_passport(resultSet.getString("passport"));
+        client.setClientName(resultSet.getString("first_name"));
+        client.setClientLastname(resultSet.getString("last_name"));
+        client.setBirthday(resultSet.getDate("birthday"));
+        client.setClientPhone(resultSet.getString("phone"));
+        client.setClientPassport(resultSet.getString("passport"));
 
         return client;
     }

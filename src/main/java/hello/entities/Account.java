@@ -1,23 +1,34 @@
 package hello.entities;
 
+import org.hibernate.validator.constraints.UniqueElements;
+
+import javax.persistence.*;
+
 /**
  * Created by ANRI on 14.05.2019.
  */
-
+@Entity
 public class Account {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    private String client_account;
-    private String client_cvc;
-    private String client_keyword;
-    private double client_balance;
+    private int clientId;
+    @Column(unique = true)
+    private String clientAccount;
+    private String clientCvc;
+    private String clientKeyword;
+    private double clientBalance;
 
-    public Account(String client_account, String client_cvc, String client_keyword, double client_balance) {
-        this.client_account = client_account;
-        this.client_cvc = client_cvc;
-        this.client_keyword = client_keyword;
-        this.client_balance = client_balance;
+    public Account(){
+    }
+
+    public Account(int clientId, String clientAccount, String clientCvc, String clientKeyword, double clientBalance) {
+        this.clientId = clientId;
+        this.clientAccount = clientAccount;
+        this.clientCvc = clientCvc;
+        this.clientKeyword = clientKeyword;
+        this.clientBalance = clientBalance;
     }
 
     public int getId() {
@@ -28,46 +39,55 @@ public class Account {
         this.id = id;
     }
 
-    public String getClient_account() {
-        return client_account;
+    public int getClientId() {
+        return clientId;
     }
 
-    public void setClient_account(String client_account) {
-        this.client_account = client_account;
+    public void setClientId(int clientId) {
+        this.clientId = clientId;
     }
 
-    public String getClient_cvc() {
-        return client_cvc;
+    public String getClientAccount() {
+        return clientAccount;
     }
 
-    public void setClient_cvc(String client_cvc) {
-        this.client_cvc = client_cvc;
+    public void setClientAccount(String clientAccount) {
+        this.clientAccount = clientAccount;
     }
 
-    public String getClient_keyword() {
-        return client_keyword;
+    public String getClientCvc() {
+        return clientCvc;
     }
 
-    public void setClient_keyword(String client_keyword) {
-        this.client_keyword = client_keyword;
+    public void setClientCvc(String clientCvc) {
+        this.clientCvc = clientCvc;
     }
 
-    public double getClient_balance() {
-        return client_balance;
+    public String getClientKeyword() {
+        return clientKeyword;
     }
 
-    public void setClient_balance(double client_balance) {
-        this.client_balance = client_balance;
+    public void setClientKeyword(String clientKeyword) {
+        this.clientKeyword = clientKeyword;
+    }
+
+    public double getClientBalance() {
+        return clientBalance;
+    }
+
+    public void setClientBalance(double clientBalance) {
+        this.clientBalance = clientBalance;
     }
 
     @Override
     public String toString() {
         return "Account{" +
                 "id=" + id +
-                ", client_account='" + client_account + '\'' +
-                ", client_cvc='" + client_cvc + '\'' +
-                ", client_keyword='" + client_keyword + '\'' +
-                ", client_balance=" + client_balance +
+                ", clientId=" + clientId +
+                ", clientAccount='" + clientAccount + '\'' +
+                ", clientCvc='" + clientCvc + '\'' +
+                ", clientKeyword='" + clientKeyword + '\'' +
+                ", clientBalance=" + clientBalance +
                 '}';
     }
 }

@@ -1,32 +1,35 @@
 package hello.entities;
 
 import javax.annotation.Generated;
+import javax.persistence.*;
 import java.util.Date;
 
 /**
  * Created by ANRI on 13.05.2019.
  */
 
+@Entity
 public class Client {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    private String client_name;
-    private String client_lastname;
-    private String client_passport;
-    private Date birth_date;
-    private String client_phone;
-
-    public Client(int id, String client_name, String client_lastname, String client_passport, Date birth_date, String client_phone) {
-        this.id = id;
-        this.client_name = client_name;
-        this.client_lastname = client_lastname;
-        this.client_passport = client_passport;
-        this.birth_date = birth_date;
-        this.client_phone = client_phone;
-    }
+    private String clientName;
+    private String clientLastname;
+    @Column(unique = true)
+    private String clientPassport;
+    private Date birthday;
+    private String clientPhone;
 
     public Client(){
+    }
+
+    public Client(String clientName, String clientLastname, String clientPassport, Date birthday, String clientPhone) {
+        this.clientName = clientName;
+        this.clientLastname = clientLastname;
+        this.clientPassport = clientPassport;
+        this.birthday = birthday;
+        this.clientPhone = clientPhone;
     }
 
     public int getId() {
@@ -37,55 +40,55 @@ public class Client {
         this.id = id;
     }
 
-    public String getClient_name() {
-        return client_name;
+    public String getClientName() {
+        return clientName;
     }
 
-    public void setClient_name(String client_name) {
-        this.client_name = client_name;
+    public void setClientName(String clientName) {
+        this.clientName = clientName;
     }
 
-    public String getClient_lastname() {
-        return client_lastname;
+    public String getClientLastname() {
+        return clientLastname;
     }
 
-    public void setClient_lastname(String client_lastname) {
-        this.client_lastname = client_lastname;
+    public void setClientLastname(String clientLastname) {
+        this.clientLastname = clientLastname;
     }
 
-    public String getClient_passport() {
-        return client_passport;
+    public String getClientPassport() {
+        return clientPassport;
     }
 
-    public void setClient_passport(String client_passport) {
-        this.client_passport = client_passport;
+    public void setClientPassport(String clientPassport) {
+        this.clientPassport = clientPassport;
     }
 
-    public Date getBirth_date() {
-        return birth_date;
+    public Date getBirthday() {
+        return birthday;
     }
 
-    public void setBirth_date(Date birth_date) {
-        this.birth_date = birth_date;
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
     }
 
-    public String getClient_phone() {
-        return client_phone;
+    public String getClientPhone() {
+        return clientPhone;
     }
 
-    public void setClient_phone(String client_phone) {
-        this.client_phone = client_phone;
+    public void setClientPhone(String clientPhone) {
+        this.clientPhone = clientPhone;
     }
 
     @Override
     public String toString() {
         return "Client{" +
                 "id=" + id +
-                ", client_name='" + client_name + '\'' +
-                ", client_lastname='" + client_lastname + '\'' +
-                ", client_passport='" + client_passport + '\'' +
-                ", birth_date='" + birth_date + '\'' +
-                ", client_phone='" + client_phone + '\'' +
+                ", clientName='" + clientName + '\'' +
+                ", clientLastname='" + clientLastname + '\'' +
+                ", clientPassport='" + clientPassport + '\'' +
+                ", birthday=" + birthday +
+                ", clientPhone='" + clientPhone + '\'' +
                 '}';
     }
 }

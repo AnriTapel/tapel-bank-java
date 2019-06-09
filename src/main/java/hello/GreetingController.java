@@ -20,10 +20,10 @@ import java.util.List;
 public class GreetingController {
 
     @Autowired
-    ClientDao clientDao;
+    private ClientDao clientDao;
 
     @Autowired
-    AccountDao accountDao;
+    private AccountDao accountDao;
 
     @GetMapping("/login")
     public String loginPage(@RequestParam(name="account", required=false, defaultValue="Log In") String account,
@@ -40,7 +40,7 @@ public class GreetingController {
         model.addAttribute("title", "TapelBank - Home Page");
         return "homePage";
     }
-    
+
     @GetMapping("/sign-up")
     public String signUpPage(Model model){
         model.addAttribute("title", "TapelBank - Sign up");
@@ -52,23 +52,24 @@ public class GreetingController {
     public ResponseEntity<?> createNewClient(@RequestBody String clientData) throws SQLException {
         Gson g = new Gson();
         Client newClient = g.fromJson(clientData, Client.class);
-        List<Client> existingClientByPassport = clientDao.getClientDataByPassport(newClient.getClient_passport());
-        int clientIdForAccount;
-        boolean accountCreationResult = false;
+        Client existingClientByPassport = clientDao.findByClientPassport(newClient.getClientPassport());
+        Account newAccount = g.fromJson(clientData, Account.class);
+        int clientIdForAccount = existingClientByPassport.getId();
 
-        if (existingClientByPassport.size() == 1){
-            if ((!existingClientByPassport.get(0).getClient_name().equals(newClient.getClient_name())
-                    || (!existingClientByPassport.get(0).getClient_lastname().equals(newClient.getClient_lastname()))))
+        if (clientIdForAccount > -1){
+            if (clientIdForAccount != clientDao.findByClientNameAndClientLastname(newClient.getClientName(), newClient.getClientLastname()).getId())
                 return ResponseEntity.badRequest().body("Couldn't register client with given data. Client with such passport number is already signed up.");
-
-            clientIdForAccount = existingClientByPassport.get(0).getId();
-            accountCreationResult = accountDao.createNewAccount(g.fromJson(clientData, Account.class), clientIdForAccount);
+            newAccount.setClientId(clientIdForAccount);
+            accountDao.save(newAccount);
         } else {
-            clientIdForAccount = clientDao.createNewClient(newClient);
-            if (clientIdForAccount > -1)
-                accountCreationResult = accountDao.createNewAccount(g.fromJson(clientData, Account.class), clientIdForAccount);
+            clientDao.save(newClient);
+            clientIdForAccount = clientDao.findByClientPassport(newClient.getClientPassport()).getId();
+            if (clientIdForAccount > -1) {
+                newAccount.setClientId(clientIdForAccount);
+                accountDao.save(newAccount);
+            }
         }
-        return accountCreationResult ? ResponseEntity.ok("Great! You've been signed up successfully!") :
+        return accountDao.findByClientAccount(newAccount.getClientAccount()).getId() > -1 ? ResponseEntity.ok("Great! You've been signed up successfully!") :
                 ResponseEntity.badRequest().body("Couldn't register your account data. Please, try again.");
 
     }

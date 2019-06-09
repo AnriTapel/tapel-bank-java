@@ -1,62 +1,18 @@
 package hello.dao;
 
 import hello.entities.Client;
-import hello.mappers.ClientEntityMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Service;
-
-import javax.sql.DataSource;
-import java.sql.*;
-import java.util.List;
+import org.springframework.data.repository.CrudRepository;
 
 /**
  * Created by ANRI on 15.05.2019.
  */
 
-@Service
-public class ClientDao {
+public interface ClientDao extends CrudRepository<Client, Long>{
 
-    @Autowired
-    DataSource dataSource;
+    Client findById(int id);
 
-    @Autowired
-    JdbcTemplate jdbcTemplate;
+    Client findByClientPassport(String clientPassport);
 
+    Client findByClientNameAndClientLastname(String name, String lastName);
 
-    public List<Client> getClientDataById(int id) {
-        String sql = "select * from clients where id = ?";
-        return jdbcTemplate.query(sql, new Object[]{id}, new BeanPropertyRowMapper<Client>(Client.class));
-    }
-
-    public List<Client> getClientDataByPassport(String passport){
-        String sql = "select * from clients where passport = ?";
-        return jdbcTemplate.query(sql, new Object[]{passport}, new ClientEntityMapper());
-    }
-
-    public int createNewClient(Client clientData) throws SQLException {
-        String sql = "insert into clients(first_name, last_name, passport, birthday, phone) values ('" +
-                clientData.getClient_name() + "', '" + clientData.getClient_lastname() + "', '" +
-                clientData.getClient_passport() + "', '" + clientData.getBirth_date() + "', '" +
-                clientData.getClient_phone() + "')";
-        try (
-                Connection connection = dataSource.getConnection();
-                PreparedStatement statement = connection.prepareStatement(sql,
-                        Statement.RETURN_GENERATED_KEYS);
-        ) {
-            int affectedRows = statement.executeUpdate();
-
-            if (affectedRows == 0) {
-                throw new SQLException("Creating user failed, no rows affected.");
-            }
-
-            try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
-                if (generatedKeys.next())
-                    return generatedKeys.getInt(1);
-                else
-                    throw new SQLException("Creating user failed, no ID obtained.");
-            }
-        }
-    }
 }
