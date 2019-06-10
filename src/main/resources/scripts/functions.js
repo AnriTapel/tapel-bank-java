@@ -21,7 +21,7 @@ function createNewUser(){
             'Content-Type': 'application/json'
         },
         type: "POST",
-        url: "/sign-up/new-client",
+        url: "/sign-up",
         data: JSON.stringify(data),
         dataType: 'json',
         timeout: 600000,

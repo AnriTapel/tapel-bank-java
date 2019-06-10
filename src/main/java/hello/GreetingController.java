@@ -7,6 +7,7 @@ import hello.entities.Account;
 import hello.entities.Client;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -23,6 +24,9 @@ public class GreetingController {
 
     @Autowired
     private AccountDao accountDao;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @GetMapping("/login")
     public String loginPage(@RequestParam(name = "account", required = false, defaultValue = "Log In") String account,
@@ -46,13 +50,14 @@ public class GreetingController {
         return "signUp";
     }
 
-    @PostMapping("/sign-up/new-client")
+    @PostMapping("/sign-up")
     @ResponseBody
     public ResponseEntity<?> createNewClient(@RequestBody String clientData) throws SQLException {
         Gson g = new Gson();
         Client newClient = g.fromJson(clientData, Client.class);
         Client existingClientByPassport = clientDao.findByClientPassport(newClient.getClientPassport());
         Account newAccount = g.fromJson(clientData, Account.class);
+        newAccount.setClientKeyword(passwordEncoder.encode(newAccount.getClientKeyword()));
         int clientIdForAccount = existingClientByPassport != null ? existingClientByPassport.getId() : -1;
         // If there already is client with same passport
         if (clientIdForAccount > -1) {
