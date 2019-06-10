@@ -1,6 +1,5 @@
 package hello.entities;
 
-import javax.annotation.Generated;
 import javax.persistence.*;
 import java.util.Date;
 
