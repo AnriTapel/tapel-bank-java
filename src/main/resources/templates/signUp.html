@@ -1,4 +1,4 @@
-<div th:replace="/header" xmlns:th="http://www.w3.org/1999/xhtml"></div>
+<div th:replace="/header"></div>
 
 <div class="page-container">
     <h2>Добро пожаловать в нашу семью, ахпэрэс!</h2>
@@ -46,13 +46,13 @@
         </div>
 
         <div>
-            <span>Кодовое слово</span>
-            <input type="password" id="client-keyword" name="client-keyword"/>
+            <span>Номер телефона (логин)</span>
+            <input type="text" id="client-phone" name="client-phone" maxlength="12" placeholder="+79012345678"/>
         </div>
 
         <div>
-            <span>Номер телефона</span>
-            <input type="text" id="client-phone" name="client-phone" maxlength="12" placeholder="+79012345678"/>
+            <span>Кодовое слово (пароль)</span>
+            <input type="password" id="client-keyword" name="client-keyword"/>
         </div>
 
         <div>
@@ -67,4 +67,4 @@
 
 </div>
 
-<div th:replace="/footer" xmlns:th="http://www.w3.org/1999/xhtml"></div>
+<div th:replace="/footer"></div>

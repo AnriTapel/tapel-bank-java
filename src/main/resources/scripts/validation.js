@@ -18,7 +18,7 @@ $(function () {
     $( "#client-name, #client-lastname").inputfilter({
         allowNumeric: false,
         allowText: true,
-        allowCustom: [" "]
+        allowCustom: [" ", "-"]
     });
 
     $("#client-name").on("input keydown keyup drop", function() {

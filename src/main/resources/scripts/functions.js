@@ -4,15 +4,15 @@
 function createNewUser(){
 
     var data = {
-        "clientName": $("#client-name").val(),
-        "clientLastname": $("#client-lastname").val(),
-        "clientPassport": $("#client-passport-series").val() + " " + $("#client-passport-number").val(),
+        "name": $("#client-name").val(),
+        "lastname": $("#client-lastname").val(),
+        "passport": $("#client-passport-series").val() + " " + $("#client-passport-number").val(),
         "birthday": $("#birth-date").val(),
-        "clientAccount": $("#client-account-1").val() + " " + $("#client-account-2").val() + " " + $("#client-account-3").val() + " " + $("#client-account-4").val(),
-        "clientCvc": $("#client-cvc").val(),
-        "clientKeyword": $("#client-keyword").val(),
-        "clientPhone": $("#client-phone").val(),
-        "clientBalance": $("#client-balance").val()
+        "account": $("#client-account-1").val() + " " + $("#client-account-2").val() + " " + $("#client-account-3").val() + " " + $("#client-account-4").val(),
+        "cvc": $("#client-cvc").val(),
+        "password": $("#client-keyword").val(),
+        "username": $("#client-phone").val(),
+        "balance": $("#client-balance").val()
     };
 
     $.ajax({
@@ -26,12 +26,10 @@ function createNewUser(){
         dataType: 'json',
         timeout: 600000,
         success: function (data) {
-           console.log(data);
            $("#overlay-message-block").children().text(data.responseText);
            $(".overlay").show();
         },
         error: function (e) {
-            console.log(e);
             $("#overlay-message-block").children("p").text(e.responseText);
             $(".overlay").show();
         }
