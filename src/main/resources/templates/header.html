@@ -22,8 +22,8 @@
 
     <div class="top-bar">
         <p class="logo-text">TapelBank - всем банкам банк</p>
-        <a href="/login" style="float: left;" th:text="${account}"></a>
-        <form th:action="@{/logout}" method="post">
-            <input type="submit" value="Sign Out"/>
+        <a href="/login" style="float: left; margin-left: 5%;" th:text="${account}"></a>
+        <form th:action="@{/logout}" method="post" style="float: right; margin-right: 5%;">
+            <input type="submit" class="common-button" value="Sign Out"/>
         </form>
     </div>

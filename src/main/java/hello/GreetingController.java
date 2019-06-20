@@ -9,6 +9,8 @@ import hello.entities.Authorities;
 import hello.entities.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,29 +35,29 @@ public class GreetingController {
     private AuthoritiesDao authoritiesDao;
 
     @GetMapping("/login")
-    public String getLoginPage(@RequestParam(name = "account", required = false, defaultValue = "Log In") String account,
-                            Model model) {
-        model.addAttribute("account", account);
+    public String getLoginPage(Model model) {
+        model.addAttribute("account", getCurrentUserDetail());
         model.addAttribute("title", "TapelBank - Login Page");
         return "login";
     }
 
     @GetMapping("/accessDenied")
     public String getAccessDeniedPage(Model model) {
+        model.addAttribute("account", getCurrentUserDetail());
         model.addAttribute("title", "TapelBank - Access Denied");
         return "accessDenied";
     }
 
     @GetMapping("/")
-    public String getHomePage(@RequestParam(name = "account", required = false, defaultValue = "Log In") String account,
-                           Model model) {
-        model.addAttribute("account", account);
+    public String getHomePage(Model model) {
+        model.addAttribute("account", getCurrentUserDetail());
         model.addAttribute("title", "TapelBank - Home Page");
         return "homePage";
     }
 
     @GetMapping("/sign-up")
     public String getSignUpPage(Model model) {
+        model.addAttribute("account", getCurrentUserDetail());
         model.addAttribute("title", "TapelBank - Sign up");
         return "signUp";
     }
@@ -82,8 +84,8 @@ public class GreetingController {
                     break;
                 }
             }
-            if (!hasSameName)
-                return ResponseEntity.badRequest().body("Couldn't register client with given data. Client with such passport number is already signed up.");
+            if (!hasSameName || !usersDao.findByUsername(newClient.getUsername()).isEmpty())
+                return ResponseEntity.badRequest().body("Couldn't register client with given data. Client with such passport number or phone number is already signed up.");
             newAccount.setClientId(clientIdForAccount);
             accountsDao.save(newAccount);
         } else {
@@ -103,7 +105,21 @@ public class GreetingController {
 
     @GetMapping("/transaction")
     public String getTransactionPage(Model model) {
+        model.addAttribute("account", getCurrentUserDetail());
         model.addAttribute("title", "TapelBank - Transactions");
         return "transaction";
+    }
+
+    private String getCurrentUserDetail() {
+        Object principal = SecurityContextHolder.getContext().getAuthentication()
+                .getPrincipal();
+
+        String username;
+        if (principal instanceof UserDetails)
+            username = usersDao.findByUsername(((UserDetails) principal).getUsername()).get(0).getLastname();
+        else
+            username = "Log-in";
+
+        return username;
     }
 }

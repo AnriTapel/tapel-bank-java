@@ -9,7 +9,7 @@ import java.sql.SQLException;
 /**
  * Created by Xiaomi on 30.05.2019.
  */
-public class ClientEntityMapper implements RowMapper<Users> {
+public class UsersEntityMapper implements RowMapper<Users> {
 
     @Override
     public Users mapRow(ResultSet resultSet, int i) throws SQLException {

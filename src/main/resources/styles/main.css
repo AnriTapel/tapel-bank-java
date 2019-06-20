@@ -3,12 +3,12 @@ body{
     margin: 0 0;
 }
 
-h1, h2, h2, p, span{
+h1, h2, h2, p, span, a{
     font-family: Ebrima, serif;
     font-style: oblique;
 }
 
-p{
+p, a{
     font-size: 18px;
     color: #111111;
 }
