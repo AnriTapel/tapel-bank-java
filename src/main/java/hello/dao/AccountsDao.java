@@ -11,6 +11,8 @@ import java.util.List;
 
 public interface AccountsDao extends CrudRepository<Accounts, Long>{
 
+    Accounts findById(int id);
+
     List<Accounts> findAllByClientId(int id);
 
     Accounts findByAccount(String account);

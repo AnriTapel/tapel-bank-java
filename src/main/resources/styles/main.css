@@ -13,6 +13,14 @@ p, a{
     color: #111111;
 }
 
+table{
+    width: 100%;
+}
+
+tr{
+    line-height: 60px;
+}
+
 input[type=text], input[type=password], input[type=date]{
     height: 35px;
     border: 1px solid black;
@@ -34,6 +42,7 @@ input[type=text], input[type=password], input[type=date]{
 .logo-text{
     font-weight: bold;
     font-size: 22px !important;
+    cursor: default;
 }
 
 .overlay{
@@ -102,19 +111,26 @@ input[type=text], input[type=password], input[type=date]{
     height: 300px;
 }
 
-.sign-up-block input[type=text],
-.sign-up-block input[type=date],
-.sign-up-block input[type=password]{
+.history-block{
+    min-height: 180px;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.data-input-block input[type=text],
+.data-input-block input[type=date],
+.data-input-block input[type=password],
+.data-input-block input[type=button]{
     float: right !important;
     margin-right: 15px;
 }
 
-.sign-up-block div{
-    display: table-row;
+.data-input-block div{
     height: 45px;
 }
 
-.sign-up-block span{
+.data-input-block span{
     float: left;
     margin-left: 15px;
 }
@@ -133,5 +149,9 @@ input[type=text], input[type=password], input[type=date]{
 
 #client-name, #client-lastname{
     float: left;
+}
+
+#comment{
+    height: 60px !important;
 }
 

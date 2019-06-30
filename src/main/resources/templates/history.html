@@ -1,0 +1,62 @@
+<div th:replace="/header"></div>
+    <div class="page-container">
+        <h2>История операций по Вашим счетам</h2>
+
+        <div style="width: 100%; padding: 10px 20px; text-align: center;">
+
+            <h3>Переводы</h3>
+            <div class="history-block">
+                <p th:if="${transactions.empty}" style="margin-top: 100px;">Операций пока не проводилось</p>
+
+                <table th:unless="${transactions.empty}">
+                    <thead>
+                    <tr>
+                        <th> Счет списания </th>
+                        <th> Счет зачисления </th>
+                        <th> Сумма перевода </th>
+                        <th> Дата / Время</th>
+                        <th> Комментраий </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="tran : ${transactions}">
+                        <td><span th:text="${tran.senderAccount}"> Счет списания </span></td>
+                        <td><span th:text="${tran.receiverAccount}"> Счет зачисления </span></td>
+                        <td><span th:text="${tran.operationSum}"> Сумма перевода </span></td>
+                        <td><span th:text="${#dates.format(tran.date, 'dd-MM-yyyy HH:mm')}"> Дата / Время </span></td>
+                        <td><span th:text="${tran.comment}"> Комментарий </span></td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+            <h3>Платежи</h3>
+            <div class="history-block">
+                <p th:if="${payments.empty}" style="margin-top: 100px;">Операций пока не проводилось</p>
+
+                <table th:unless="${payments.empty}">
+                    <thead>
+                    <tr>
+                        <th> Счет списания </th>
+                        <th> Счет зачисления </th>
+                        <th> Сумма перевода </th>
+                        <th> Дата / Время</th>
+                        <th> Комментраий </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="pay : ${payments}">
+                        <td><span th:text="${pay.senderAccount}"> Счет списания </span></td>
+                        <td><span th:text="${pay.receiverAccount}"> Счет зачисления </span></td>
+                        <td><span th:text="${pay.operationSum}"> Сумма перевода </span></td>
+                        <td><span th:text="${#dates.format(pay.date, 'dd-MM-yyyy HH:mm')}"> Дата / Время </span></td>
+                        <td><span th:text="${pay.comment}"> Комментарий </span></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+<div th:replace="/footer"></div>

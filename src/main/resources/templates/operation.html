@@ -1,0 +1,45 @@
+<div th:replace="/header"></div>
+
+    <div class="page-container">
+
+        <h2 th:text="${operation == 'transaction'} ? 'Перевод денежных средств' : 'Оплата товаров и услуг'"></h2>
+
+        <div class="card block-styling data-input-block">
+            <div th:if="${operation == 'transaction'}" style="margin-top: 20px;">
+                <span>Счет получателя</span>
+                <div style="float: right; display: flex;">
+                    <input type="text" id="client-account-1" name="client-account-1" placeholder="4276" maxlength="4"/>
+                    <input type="text" id="client-account-2" name="client-account-2" placeholder="3801" maxlength="4"/>
+                    <input type="text" id="client-account-3" name="client-account-3" placeholder="1234" maxlength="4"/>
+                    <input type="text" id="client-account-4" name="client-account-4" placeholder="5678" maxlength="4"/>
+                </div>
+            </div>
+
+            <div th:if="${operation == 'payment'}">
+                <span>Реквизиты получателя</span>
+                <input type="text" id="receiver-requisites" name="receiver-requisites" >
+            </div>
+
+            <div style="margin-bottom: 15px;" th:if="${operation == 'transaction'}">
+                <input type="button" class="common-button" value="Проверить получателя" onclick="checkTransferReceiver();"/>
+                <span id="receiver-name"></span>
+            </div>
+
+            <div th:attr="style=${operation == 'payment'} ? 'margin-top: 60px;'">
+                <span>Сумма перевода</span>
+                <input type="text" id="client-balance" name="client-balance" placeholder="10000"/>
+            </div>
+
+            <div style="margin-top: 60px;">
+                <span>Комментарий</span>
+                <input type="text" id="comment" name="comment" maxlength="80">
+            </div>
+        </div>
+
+        <input type="button" class="common-button" style="display: block; margin: 20px auto;"
+               th:attr="onclick=${operation == 'transaction'} ? 'makeOperation(0)' : 'makeOperation(1)', value=${operation == 'transaction'} ? 'Перевести' : 'Оплатить'"/>
+
+    </div>
+
+
+<div th:replace="/footer"></div>

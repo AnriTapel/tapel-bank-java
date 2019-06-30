@@ -4,7 +4,7 @@
 $(function () {
     //Text only
     $( "input[id^='client-account'], #client-cvc, #client-balance, #client-passport-number," +
-        "#client-passport-series").inputfilter({
+        "#client-passport-series, #receiver-requisites").inputfilter({
         allowNumeric: true,
         allowText: false
     });

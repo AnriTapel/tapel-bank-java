@@ -8,7 +8,7 @@ import java.util.Date;
  */
 
 @Entity
-public class Users {
+public class Users implements Comparable< Users >{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
@@ -111,5 +111,10 @@ public class Users {
                 ", passport='" + passport + '\'' +
                 ", birthday=" + birthday +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Users o) {
+        return this.getBirthday().compareTo(o.getBirthday());
     }
 }

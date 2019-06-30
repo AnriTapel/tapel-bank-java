@@ -6,7 +6,7 @@ import javax.persistence.*;
  * Created by ANRI on 14.05.2019.
  */
 @Entity
-public class Accounts {
+public class Accounts implements Comparable< Accounts >{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
@@ -76,5 +76,10 @@ public class Accounts {
                 ", cvc='" + cvc + '\'' +
                 ", balance=" + balance +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Accounts o) {
+        return this.getAccount().compareTo(String.valueOf(o.getBalance()));
     }
 }
